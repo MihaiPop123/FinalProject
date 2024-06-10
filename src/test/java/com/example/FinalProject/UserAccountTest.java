@@ -22,15 +22,16 @@ public class UserAccountTest {
 
     @Mock
     private UsersAccountMapper usersAccountMapper; //obiect fake
+
     @InjectMocks//injecteaza orice dependinta fake(mockuita)in obiectul real
     private UsersAccountServiceImpl usersAccountService;
 
 
-
-
     @Test
-    public void testCreatedAddUserAccount(){
+    public void testCreatedUserAccount(){
+
         AddUsersAccountRequest addNewUsersAccountRequest=new AddUsersAccountRequest();
+
         addNewUsersAccountRequest.setAccountName("user1");
         addNewUsersAccountRequest.setEmail("user1@yahoo.com");
         addNewUsersAccountRequest.setPassword("1234");
@@ -38,7 +39,6 @@ public class UserAccountTest {
         addNewUsersAccountRequest.setProvince("Bucuresti");
         addNewUsersAccountRequest.setCountry("romania");
         addNewUsersAccountRequest.setAddress("Str.Scolii nr 16");
-
 
         UsersAccount usersAccount=new UsersAccount();
         UsersAccountResponse usersAccountResponse= new UsersAccountResponse();
@@ -60,4 +60,5 @@ public class UserAccountTest {
         Assertions.assertEquals(usersAccountResponse.getAccountName(),response.getAccountName());
         Assertions.assertEquals(usersAccountResponse.getEmail(),response.getEmail());
     }
+
 }

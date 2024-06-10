@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuctionMapper {
 
-        public static AuctionResponse fromAuction(Auction auction){
+        public AuctionResponse fromAuction(Auction auction){
             AuctionResponse auctionResponse = new AuctionResponse();
 
             auctionResponse.setTitle(auction.getTitle());

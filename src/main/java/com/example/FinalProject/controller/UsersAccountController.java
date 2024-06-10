@@ -20,9 +20,12 @@ public class UsersAccountController {
 
     private final UsersAccountService usersAccountService;
 
+    private final AuctionMapper auctionMapper;
 
-    public UsersAccountController(UsersAccountService usersAccountService) {
+
+    public UsersAccountController(UsersAccountService usersAccountService, AuctionMapper auctionMapper) {
         this.usersAccountService = usersAccountService;
+        this.auctionMapper = auctionMapper;
     }
 
     @GetMapping
@@ -72,7 +75,7 @@ public class UsersAccountController {
     @GetMapping("/get-watchlist/")
     public ResponseEntity<List<AuctionResponse>> getAuctionsFromWatchlist() {
 
-        List<AuctionResponse> auctionResponseList = usersAccountService.getWatchlist().stream().map(AuctionMapper :: fromAuction).collect(Collectors.toList());
+        List<AuctionResponse> auctionResponseList = usersAccountService.getWatchlist().stream().map(auction -> auctionMapper.fromAuction(auction)).collect(Collectors.toList());
 
         return ResponseEntity.status(HttpStatus.OK).body(auctionResponseList);
     }
