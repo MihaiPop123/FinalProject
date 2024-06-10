@@ -15,15 +15,15 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
     @Query("SELECT a FROM Auction a WHERE a.title = ?1 AND a.endDate < CURRENT_TIMESTAMP AND a.purchase IS NULL")
     Optional<Auction> findByTitle(String title);
 
-    @Query("SELECT a FROM Auction a WHERE a.id = ?1 AND a.endDate < CURRENT_TIMESTAMP AND a.purchase IS NULL")
-    Optional<Auction> findById(Integer id);
+//    @Query("SELECT a FROM Auction a WHERE a.id = ?1 AND a.endDate > CURRENT_TIMESTAMP AND a.purchase IS NULL")
+//    Optional<Auction> findById(Integer id);
+//
+//    @Query("SELECT a FROM Auction a WHERE a.endDate < CURRENT_TIMESTAMP AND a.purchase IS NULL")
+//    List<Auction> findAll();
 
-    @Query("SELECT a FROM Auction a WHERE a.endDate < CURRENT_TIMESTAMP AND a.purchase IS NULL")
-    List<Auction> findAll();
-
-        @Query("SELECT a " +
-                "FROM Auction a " +
-                "LEFT JOIN a.auctionBiddings b " +
-                "WHERE b.id IS NULL AND a.endDate < CURRENT_TIMESTAMP AND a.purchase IS null")
-        List<Auction> findExpiredAuctions();
+    @Query("SELECT a " +
+            "FROM Auction a " +
+            "LEFT JOIN a.auctionBiddings b " +
+            "WHERE b.id IS NULL AND a.endDate < CURRENT_TIMESTAMP AND a.purchase IS null")
+    List<Auction> findExpiredAuctions();
 }

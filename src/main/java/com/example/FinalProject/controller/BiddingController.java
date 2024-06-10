@@ -1,6 +1,5 @@
 package com.example.FinalProject.controller;
 
-import com.example.FinalProject.dto.request.AddBiddingRequest;
 import com.example.FinalProject.dto.request.UpdateBiddingRequest;
 import com.example.FinalProject.dto.response.BiddingResponse;
 import com.example.FinalProject.service.BiddingService;
@@ -29,12 +28,12 @@ public class BiddingController {
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
 
-    @PostMapping
-    public ResponseEntity<BiddingResponse> createBidding(@RequestBody AddBiddingRequest addBiddingRequest) {
-        BiddingResponse responseBody = biddingService.createBidding(addBiddingRequest);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
-    }
+//    @PostMapping
+//    public ResponseEntity<BiddingResponse> createBidding(@RequestBody AddBiddingRequest addBiddingRequest) {
+//        BiddingResponse responseBody = biddingService.createBidding(addBiddingRequest);
+//
+//        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
+//    }
 
 
 

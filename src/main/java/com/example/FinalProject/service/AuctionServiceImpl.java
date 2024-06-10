@@ -94,12 +94,14 @@ public class AuctionServiceImpl implements AuctionService{
         }
     }
 
+    @Override
     public List<AuctionResponse> getLatestAuctions(Integer maxCount) {
 
         List<Auction> auctionList = auctionRepository.findAll();
 
         List<Auction> sortedAuctionList = auctionList.stream()
-                .sorted(Comparator.comparing(Auction::getDateOfIssue).reversed()).limit(maxCount)
+                .sorted(Comparator.comparing(Auction::getDateOfIssue).reversed())
+                .limit(maxCount)
                 .collect(Collectors.toList());
 
         List<AuctionResponse> auctionResponseList = sortedAuctionList.stream()
@@ -108,12 +110,15 @@ public class AuctionServiceImpl implements AuctionService{
         return auctionResponseList;
     }
 
-    public List<AuctionResponse> getAuctionsThatAreEndingSoon() {
+
+    @Override
+    public List<AuctionResponse> getAuctionsThatAreEndingSoon(Integer maxCount) {
 
         List<Auction> auctionList = auctionRepository.findAll();
 
         List<Auction> sortedAuctionList = auctionList.stream()
                 .sorted(Comparator.comparing(Auction::getDateOfIssue))
+                .limit(maxCount)
                 .collect(Collectors.toList());
 
         List<AuctionResponse> auctionResponseList = sortedAuctionList.stream()
@@ -122,13 +127,14 @@ public class AuctionServiceImpl implements AuctionService{
         return auctionResponseList;
     }
 
-    //presentation of the list of auctions that "just ended" (e.g. 10)
-    public List<AuctionResponse> getAuctionsThatJustEnded() {
+    @Override
+    public List<AuctionResponse> getAuctionsThatJustEnded(Integer maxCount) {
 
         List<Auction> auctionList = auctionRepository.findAll();
 
         List<Auction> sortedAuctionList = auctionList.stream()
                 .filter(element -> LocalDateTime.now().isAfter(element.getEndDate()))
+                .limit(maxCount)
                 .collect(Collectors.toList());
 
         List<AuctionResponse> auctionResponseList = sortedAuctionList.stream()
@@ -138,7 +144,9 @@ public class AuctionServiceImpl implements AuctionService{
         return auctionResponseList;
     }
 
-    public List<AuctionResponse> getAuctionByCategory(AuctionCategory auctionCategory) {
+
+    @Override
+    public List<AuctionResponse> getAuctionsByCategory(AuctionCategory auctionCategory) {
 
         List<Auction> auctionList = auctionRepository.findAll().stream()
                 .filter(element -> auctionCategory.equals(element.getCategory()))

@@ -1,6 +1,5 @@
 package com.example.FinalProject.controller;
 
-import com.example.FinalProject.dto.request.AddPurchaseRequest;
 import com.example.FinalProject.dto.request.UpdatePurchaseRequest;
 import com.example.FinalProject.dto.response.PurchaseResponse;
 import com.example.FinalProject.service.PurchaseService;
@@ -42,13 +41,13 @@ public class PurchaseController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
-    @PostMapping()
-    public ResponseEntity<PurchaseResponse> addPurchase(@RequestBody @Valid AddPurchaseRequest addPurchaseRequest){
-
-        PurchaseResponse responseBody = purchaseService.createPurchase(addPurchaseRequest);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
-    }
+//    @PostMapping()
+//    public ResponseEntity<PurchaseResponse> addPurchase(@RequestBody @Valid AddPurchaseRequest addPurchaseRequest){
+//
+//        PurchaseResponse responseBody = purchaseService.createPurchase(addPurchaseRequest);
+//
+//        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
+//    }
 
     @PatchMapping("/{id}")
     public ResponseEntity<PurchaseResponse> updatePurchase(@PathVariable Integer id, @RequestBody @Valid UpdatePurchaseRequest updatePurchaseRequest){
