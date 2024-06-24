@@ -28,10 +28,6 @@ public class AuctionTest {
     @InjectMocks
     private AuctionServiceImpl auctionService;
 
-
-
-
-
     @Test
     public void testCreatedAuction(){
         AddAuctionRequest addAuctionRequest = new AddAuctionRequest();
